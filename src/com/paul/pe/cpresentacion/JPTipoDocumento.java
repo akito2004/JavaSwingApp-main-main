@@ -120,7 +120,6 @@ public class JPTipoDocumento extends javax.swing.JPanel {
         jLabel2.setText("fecha actualizacion");
         escritorio2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, 110, 20));
 
-        txtsigla.setText("sigla");
         txtsigla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtsiglaActionPerformed(evt);
@@ -136,14 +135,15 @@ public class JPTipoDocumento extends javax.swing.JPanel {
 
         jLabel5.setText("orden");
         escritorio2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 60, -1));
-
-        txtorden.setText("orden");
         escritorio2.add(txtorden, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 330, 30));
 
-        txtfechaactualizacion.setText("fecha de actualizacion");
+        txtfechaactualizacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtfechaactualizacionActionPerformed(evt);
+            }
+        });
         escritorio2.add(txtfechaactualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, 330, 30));
 
-        txtestado.setText("estado");
         txtestado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtestadoActionPerformed(evt);
@@ -182,7 +182,6 @@ public class JPTipoDocumento extends javax.swing.JPanel {
         jLabel7.setText("nombre");
         escritorio2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 60, -1));
 
-        txtnombre1.setText("nombre");
         txtnombre1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtnombre1ActionPerformed(evt);
@@ -309,6 +308,10 @@ public class JPTipoDocumento extends javax.swing.JPanel {
     private void bnteditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnteditarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bnteditarActionPerformed
+
+    private void txtfechaactualizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfechaactualizacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtfechaactualizacionActionPerformed
    public boolean valida(){
        if(txtnombre1.getText().equals("")){
            JOptionPane.showMessageDialog(null, "nombre es requerido");

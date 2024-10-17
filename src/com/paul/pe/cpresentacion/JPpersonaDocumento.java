@@ -4,6 +4,9 @@
  */
 package com.paul.pe.cpresentacion;
 
+import com.paul.pe.cmodelo.TipoDocumento;
+import com.paul.pe.cnegocio.TipoDocumentoBO;
+
 /**
  *
  * @author Alumno-PB203
@@ -15,8 +18,16 @@ public class JPpersonaDocumento extends javax.swing.JPanel {
      */
     public JPpersonaDocumento() {
         initComponents();
+        listarTipoDocumentoCombo();
     }
-
+    
+    private void listarTipoDocumentoCombo(){
+        TipoDocumentoBO tdbo = new TipoDocumentoBO();
+    
+        for(TipoDocumento item : tdbo.listarTipoDocumentosCombo()){
+            cjTipoDocumento.addItem(item.getIdTipoDocumento()+" "+ item.getNombre());
+    }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,7 +48,7 @@ public class JPpersonaDocumento extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         bnteliminardatos = new javax.swing.JButton();
         btnguardar = new javax.swing.JButton();
-        jcTipoDocumento = new javax.swing.JComboBox<>();
+        cjTipoDocumento = new javax.swing.JComboBox<>();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -78,7 +89,7 @@ public class JPpersonaDocumento extends javax.swing.JPanel {
         jPanel1.add(txtEstadoPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, 330, 30));
 
         jLabel1.setText("registro persona documento");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 180, 30));
 
         bnteliminardatos.setText("eliminar");
         bnteliminardatos.addActionListener(new java.awt.event.ActionListener() {
@@ -96,20 +107,20 @@ public class JPpersonaDocumento extends javax.swing.JPanel {
         });
         jPanel1.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 490, -1, -1));
 
-        jcTipoDocumento.setBorder(null);
-        jPanel1.add(jcTipoDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 330, -1));
+        cjTipoDocumento.setBorder(null);
+        jPanel1.add(cjTipoDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 330, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -127,7 +138,11 @@ public class JPpersonaDocumento extends javax.swing.JPanel {
     }//GEN-LAST:event_bnteliminardatosActionPerformed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
-
+    
+        String tdseleccionado = (String)cjTipoDocumento.getSelectedItem();
+        String id = tdseleccionado.split(" ")[0];
+   
+        System.out.println("ID: " + tdseleccionado);
        
     }//GEN-LAST:event_btnguardarActionPerformed
 
@@ -139,13 +154,13 @@ public class JPpersonaDocumento extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bnteliminardatos;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JComboBox<String> cjTipoDocumento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JComboBox<String> jcTipoDocumento;
     private javax.swing.JTextField txtEstadoPersona;
     private javax.swing.JTextField txtPersona;
     private javax.swing.JTextField txtdocumento;

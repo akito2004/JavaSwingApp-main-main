@@ -1,12 +1,14 @@
 package com.paul.pe.cdatosDao;
 
 import com.paul.pe.cmodelo.TipoDocumento;
+import com.paul.pe.db.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class TipoDocumentosDao {
@@ -15,7 +17,7 @@ public class TipoDocumentosDao {
     //Primer metodo - INSERTAR TIPO DOCUMENTOS A LA DB
     public String agregarTipoDocumento(Connection conn, TipoDocumento tipoDocumento){
         PreparedStatement ps = null;
-        String sql = "INSERT INTO TIPO_DOCUMENTO(NOMBRE,SIGLA,ESTADO,ORDEN)"
+        String sql = "INSERT INTO TIPO_DOCUMENTO(NOMBRE,SIGLA,ESTADO,ORDEN,FECHA_ACTUALIZACION)"
                 + "VALUES(?,?,?,?,?)";
         try {
             
@@ -86,25 +88,28 @@ public class TipoDocumentosDao {
         Statement statement = null;
         ResultSet resultSet = null;
         
-        String[] columnas = {"ID","NOMBRE","SIGLA","ESTADO","ORDEN","FECHA"};
+        String[] columnas = {"ID_TIPO_DOCUMENTO","NOMBRE","SIGLA","ESTADO","ORDEN","FECHA_ACTUALIZACION"};
         model = new DefaultTableModel(null,columnas);
         
         String sql = "SELECT * FROM TIPO_DOCUMENTO";
         String[] datosTP = new String[6];
-        
+        System.out.println("1");
         try {
+            System.out.println("2");
             statement = conn.createStatement();
             resultSet = statement.executeQuery(sql);
             while(resultSet.next()){
+                
+                System.out.println("5");
                 TipoDocumento td = new TipoDocumento();
                 td.setIdTipoDocumento(resultSet.getInt("ID_TIPO_DOCUMENTO"));
                 td.setNombre(resultSet.getString("NOMBRE"));
+                td.setSigla(resultSet.getString("SIGLA"));
                 td.setEstado(resultSet.getString("ESTADO"));
                 td.setOrden(resultSet.getInt("ORDEN"));
-                td.setSigla(resultSet.getString("SIGLA"));
                 //td.setFecharesultSet.getString("FECHA_REGISTRO"));
-                td.setFechaActualiza(resultSet.getString("FECHA_ACTULIZACION"));
-                
+                td.setFechaActualiza(resultSet.getString("FECHA_ACTUALIZACION"));
+                System.out.println("7");
                 datosTP[0] = td.getIdTipoDocumento()+"";
                 datosTP[1] = td.getNombre()+"";
                 datosTP[2] = td.getSigla()+"";
@@ -112,11 +117,42 @@ public class TipoDocumentosDao {
                 datosTP[4] = td.getOrden()+"";
                 datosTP[5] = td.getFechaActualiza()+"";
                 model.addRow(datosTP);
+                System.out.println("6");
             }
+            System.out.println("3");
             table.setModel(model);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: "+e.getMessage());
             System.out.println(e.getMessage());
         }
+    
+    
+    }
+    
+    public ArrayList<TipoDocumento>listarTipoDocumentoCombo(Connection conn){
+        ArrayList<TipoDocumento>listaTipoDocumento = new ArrayList<>();
+        Statement statement = null;
+        ResultSet resultSet = null;
+        
+        String sql = "SELECT ID_TIPO_DOCUMENTO, NOMBRE FROM TIPO_DOCUMENTO "
+                + "order by orden";
+    
+        try {
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(sql);
+        while(resultSet.next()){
+                TipoDocumento td = new TipoDocumento();
+                td.setIdTipoDocumento(resultSet.getInt("ID_TIPO_DOCUMENTO"));
+                td.setNombre(resultSet.getString("NOMBRE"));
+               
+                listaTipoDocumento.add(td);
+        }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,  "error: "+e.getMessage());
+            System.out.println(e.getMessage());
+
+        }
+        return listaTipoDocumento;
+
     }
 }

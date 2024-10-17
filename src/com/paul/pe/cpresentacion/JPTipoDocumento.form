@@ -149,9 +149,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="txtsigla">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="sigla"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtsiglaActionPerformed"/>
           </Events>
@@ -192,9 +189,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="txtorden">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="orden"/>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="110" y="350" width="330" height="30"/>
@@ -202,9 +196,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="txtfechaactualizacion">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="fecha de actualizacion"/>
-          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtfechaactualizacionActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="110" y="420" width="330" height="30"/>
@@ -212,9 +206,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="txtestado">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="estado"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtestadoActionPerformed"/>
           </Events>
@@ -309,9 +300,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="txtnombre1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="nombre"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtnombre1ActionPerformed"/>
           </Events>
